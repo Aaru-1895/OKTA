@@ -1,0 +1,34 @@
+package com.conServer;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class Test {
+	
+	public static void main(String[] args) {
+		
+		List<Integer> intval= Arrays.asList(0, 2, 0, 1, 0, 3);
+		
+		int array[] = {0, 2, 0, 1, 0, 3};
+		
+		List<Integer> intval1 = new ArrayList<>();
+		int  temp;
+		
+		for(int i =0;i<intval.size();i++ ) {
+			System.out.println(".."+intval.get(i));
+			
+			  if(intval.get(i)==0) { 
+				  System.out.println(",,,"+intval.get(i));
+				  intval1.add(intval.get(i)); 
+			 }
+			
+		}
+		
+	System.out.println(intval1);
+		
+		
+	}
+
+}

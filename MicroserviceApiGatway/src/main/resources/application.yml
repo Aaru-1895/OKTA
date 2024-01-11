@@ -1,0 +1,44 @@
+
+server:
+  port: 7072
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+spring:
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: HOTELSERVICE
+          uri: lb://HOTELSERVICE
+          predicates:
+            - Path=/HotelService/**,/staffs/**
+        - id: RATINGSERVICE
+          uri: lb://RATINGSERVICE
+          predicates:
+            - Path=/RatingService/**
+        - id: USERSERVICE
+          uri: lb://USERSERVICE
+          predicates:
+            - Path=/UserService/**
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+      globalcors:
+        corsconfigurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            
+            
+            
+#OKTA Configuration
+okta:
+  oauth2:
+    issuer: https://dev-65425573.okta.com/oauth2/default
+    audience: api://default
+    client-id: 0oa92hdotjuXxpt055d7
+    client-secret: 67E6aQs-ggt1k_ukoVJtfQhDuExinYZhZboIcB5k
+    scopes: openid, profile, email, offline_access           
